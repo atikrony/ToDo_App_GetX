@@ -10,7 +10,7 @@ class RoutePages {
       page: () => const HomeScreen(),
     ),
     GetPage(
-      name: RouteNames.home,
+      name: RouteNames.noteScreen,
       page: () => const NoteScreen(),
     )
   ];
