@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getx/utils/colors.dart';
+import 'package:getx/utils/custom_buttons.dart';
 
 class NoteScreen extends StatelessWidget {
   const NoteScreen({super.key});
@@ -57,9 +58,20 @@ class NoteScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 5,
             )
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding:
+            const EdgeInsets.only(left: 150, right: 150, bottom: 50, top: 0),
+        child: CustomButton(
+          text: "Save here",
+          onPressed: () {},
+          textColor: AppColor.backgroundColor,
+          height: 40,
+          width: 10,
         ),
       ),
     );
