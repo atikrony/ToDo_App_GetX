@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/route/route_names.dart';
 // import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(NotesController());
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -53,12 +55,16 @@ class HomeScreen extends StatelessWidget {
                           ListView.builder(
                             shrinkWrap: true,
                             primary: false,
-                            itemCount: 20,
+                            itemCount: controller.notes.length,
                             itemBuilder: (context, index) {
-                              return const CustomSingleNotes(
-                                  title: "Test",
-                                  description: "this is test",
-                                  date: "12.12.12");
+                              return controller.notes.isEmpty
+                                  ? const Center(
+                                      child: Text("No notes available"),
+                                    )
+                                  : const CustomSingleNotes(
+                                      title: "Test",
+                                      description: "this is test",
+                                      date: "12.12.12");
                             },
                           ),
                         ],

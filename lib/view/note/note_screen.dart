@@ -68,7 +68,9 @@ class NoteScreen extends StatelessWidget {
             const EdgeInsets.only(left: 150, right: 150, bottom: 50, top: 0),
         child: CustomButton(
           text: "Save here",
-          onPressed: () {},
+          onPressed: () {
+            print("Save button");
+          },
           textColor: AppColor.backgroundColor,
           height: 40,
           width: 10,
