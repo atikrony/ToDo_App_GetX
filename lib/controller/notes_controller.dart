@@ -7,4 +7,9 @@ class NotesController extends GetxController {
     notes.add(notesData);
     update();
   }
+
+  deleteNote(int index) {
+    notes.removeAt(index);
+    update();
+  }
 }

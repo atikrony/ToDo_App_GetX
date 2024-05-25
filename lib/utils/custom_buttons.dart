@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.color = Colors.blue,
@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
     this.borderRadius = 8.0,
     required this.width,
     required this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

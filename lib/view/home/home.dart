@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/route/route_names.dart';
-// import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
-// import 'package:getx/view/note/note_screen.dart';
 import 'package:getx/widgets/custom_single_notes.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -58,18 +57,20 @@ class HomeScreen extends StatelessWidget {
                               ? const Center(
                                   child: Text("No notes available"),
                                 )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  primary: false,
-                                  reverse: true,
-                                  itemCount: controller.notes.length,
-                                  itemBuilder: (context, index) {
-                                    final note = controller.notes[index];
-                                    return CustomSingleNotes(
-                                        title: note.title,
-                                        description: note.description,
-                                        date: note.createdDate);
-                                  },
+                              : Obx(
+                                  () => ListView.builder(
+                                    shrinkWrap: true,
+                                    primary: false,
+                                    reverse: true,
+                                    itemCount: controller.notes.length,
+                                    itemBuilder: (context, index) {
+                                      final note = controller.notes[index];
+
+                                      return CustomSingleNotes(
+                                        index: index,
+                                      );
+                                    },
+                                  ),
                                 ),
                         ],
                       ),

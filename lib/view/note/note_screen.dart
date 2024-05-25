@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/models/notes_model.dart';
+import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/utils/custom_buttons.dart';
 
@@ -47,10 +48,10 @@ class NoteScreen extends StatelessWidget {
               minLines: 1,
               maxLines: 2,
               decoration: const InputDecoration(
-                  hintText: "Title",
-                  border: InputBorder.none,
-                  hintStyle:
-                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                hintText: "Title",
+                border: InputBorder.none,
+                hintStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
             ),
             Expanded(
               child: TextFormField(
@@ -80,7 +81,10 @@ class NoteScreen extends StatelessWidget {
           onPressed: () {
             if (titleController.text.isEmpty ||
                 descriptionController.text.isEmpty) {
-              Get.snackbar("Error", "Title or Description is EMPTY");
+              Get.snackbar(
+                "Error",
+                "Title or Description is EMPTY",
+              );
             } else {
               notesAdded.addNotes(
                 NotesModel(
@@ -90,6 +94,7 @@ class NoteScreen extends StatelessWidget {
                 ),
               );
             }
+            Get.back();
           },
           textColor: AppColor.backgroundColor,
           height: 40,
