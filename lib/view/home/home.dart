@@ -51,22 +51,24 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ListView.builder(
-                            shrinkWrap: true,
-                            primary: false,
-                            itemCount: controller.notes.length,
-                            itemBuilder: (context, index) {
-                              return controller.notes.isEmpty
-                                  ? const Center(
-                                      child: Text("No notes available"),
-                                    )
-                                  : const CustomSingleNotes(
-                                      title: "Test",
-                                      description: "this is test",
-                                      date: "12.12.12");
-                            },
-                          ),
+                          controller.notes.isEmpty
+                              ? const Center(
+                                  child: Text("No notes available"),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  primary: false,
+                                  itemCount: controller.notes.length,
+                                  itemBuilder: (context, index) {
+                                    return const CustomSingleNotes(
+                                        title: "Test",
+                                        description: "this is test",
+                                        date: "12.12.12");
+                                  },
+                                ),
                         ],
                       ),
                     ),

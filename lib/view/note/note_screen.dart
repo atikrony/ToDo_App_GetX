@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/utils/custom_buttons.dart';
 
@@ -7,6 +8,9 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleController = TextEditingController();
+    final descriptionController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -35,6 +39,7 @@ class NoteScreen extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              controller: titleController,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               minLines: 1,
               maxLines: 2,
@@ -46,6 +51,7 @@ class NoteScreen extends StatelessWidget {
             ),
             Expanded(
               child: TextFormField(
+                controller: descriptionController,
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 minLines: 10,
@@ -69,7 +75,12 @@ class NoteScreen extends StatelessWidget {
         child: CustomButton(
           text: "Save here",
           onPressed: () {
-            print("Save button");
+            if (titleController.text.isEmpty ||
+                descriptionController.text.isEmpty) {
+              Get.snackbar("Error", "Title or Description is EMPTY");
+            } else {
+              print("Saved");
+            }
           },
           textColor: AppColor.backgroundColor,
           height: 40,
