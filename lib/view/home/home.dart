@@ -61,12 +61,14 @@ class HomeScreen extends StatelessWidget {
                               : ListView.builder(
                                   shrinkWrap: true,
                                   primary: false,
+                                  reverse: true,
                                   itemCount: controller.notes.length,
                                   itemBuilder: (context, index) {
-                                    return const CustomSingleNotes(
-                                        title: "Test",
-                                        description: "this is test",
-                                        date: "12.12.12");
+                                    final note = controller.notes[index];
+                                    return CustomSingleNotes(
+                                        title: note.title,
+                                        description: note.description,
+                                        date: note.createdDate);
                                   },
                                 ),
                         ],

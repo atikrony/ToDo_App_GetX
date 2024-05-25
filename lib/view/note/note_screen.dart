@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/controller/notes_controller.dart';
+import 'package:getx/models/notes_model.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/utils/custom_buttons.dart';
 
@@ -10,6 +12,7 @@ class NoteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
+    final notesAdded = Get.put(NotesController());
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +82,13 @@ class NoteScreen extends StatelessWidget {
                 descriptionController.text.isEmpty) {
               Get.snackbar("Error", "Title or Description is EMPTY");
             } else {
-              print("Saved");
+              notesAdded.addNotes(
+                NotesModel(
+                  title: titleController.text,
+                  description: descriptionController.text,
+                  createdDate: DateTime.now(),
+                ),
+              );
             }
           },
           textColor: AppColor.backgroundColor,
