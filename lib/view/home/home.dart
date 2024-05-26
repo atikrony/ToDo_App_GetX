@@ -4,7 +4,6 @@ import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/widgets/custom_single_notes.dart';
-import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

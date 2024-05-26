@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/models/notes_model.dart';
-import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/utils/custom_buttons.dart';
 
@@ -11,9 +10,21 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descriptionController = TextEditingController();
     final notesAdded = Get.put(NotesController());
+
+    final arg = Get.arguments != null
+        ? Get.arguments as Map
+        : {
+            'isUpdate': false,
+            'note': null,
+          };
+    final bool isUpdate = arg['isUpdate'] ?? false;
+    final note = arg['note'] == null ? null : arg['note'] as NotesModel;
+
+    final titleController =
+        TextEditingController(text: isUpdate ? note!.title : null);
+    final descriptionController =
+        TextEditingController(text: isUpdate ? note!.description : null);
 
     return Scaffold(
       appBar: AppBar(
@@ -74,11 +85,12 @@ class NoteScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding:
-            const EdgeInsets.only(left: 150, right: 150, bottom: 50, top: 0),
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 50, top: 0),
         child: CustomButton(
-          text: "Save here",
-          onPressed: () {
+          height: 100,
+          width: 700,
+          title: "Save here",
+          onTap: () {
             if (titleController.text.isEmpty ||
                 descriptionController.text.isEmpty) {
               Get.snackbar(
@@ -94,11 +106,8 @@ class NoteScreen extends StatelessWidget {
                 ),
               );
             }
-            Get.back();
           },
           textColor: AppColor.backgroundColor,
-          height: 40,
-          width: 10,
         ),
       ),
     );
