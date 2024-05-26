@@ -19,6 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 
 =======
 git add . 
-git comgit commit -m "msg"
+git commit -m "msg"
 git push origin main
 >>>>>>> 7c94ff1d9952cf00698d280ffd6b44af372eed98
