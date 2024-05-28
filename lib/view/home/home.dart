@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    "My Nudes",
+                    "My Notes",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),

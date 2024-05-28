@@ -106,10 +106,13 @@ class NoteScreen extends StatelessWidget {
                 ),
               );
             }
+           
           },
           textColor: AppColor.backgroundColor,
         ),
       ),
     );
   }
+  
+
 }
