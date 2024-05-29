@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/models/notes_model.dart';
+import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/utils/custom_buttons.dart';
 
@@ -105,14 +106,15 @@ class NoteScreen extends StatelessWidget {
                   createdDate: DateTime.now(),
                 ),
               );
+
+              Get.toNamed(
+                RouteNames.home,
+              );
             }
-           
           },
           textColor: AppColor.backgroundColor,
         ),
       ),
     );
   }
-  
-
 }
