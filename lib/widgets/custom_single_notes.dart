@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/controller/notes_controller.dart';
+import 'package:getx/view/home/home.dart';
 import 'package:intl/intl.dart';
 
 class CustomSingleNotes extends StatelessWidget {
@@ -79,6 +80,7 @@ class CustomSingleNotes extends StatelessWidget {
             onPressed: () {
               Get.snackbar("$index", "Deleted $index note");
               noteDelete.deleteNote(index);
+              Get.to(() => const HomeScreen());
             },
             icon: const Icon(Icons.delete),
           ),
