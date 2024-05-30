@@ -12,4 +12,8 @@ class NotesController extends GetxController {
     notes.removeAt(index);
     update();
   }
+
+  updateNote(int index, NotesModel notesData) {
+    notes[index] = notesData;
+  }
 }

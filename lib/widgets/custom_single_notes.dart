@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/route/route_names.dart';
 import 'package:getx/utils/colors.dart';
-import 'package:getx/controller/notes_controller.dart';
 import 'package:getx/view/home/home.dart';
 import 'package:intl/intl.dart';
 
@@ -15,21 +16,27 @@ class CustomSingleNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final noteDelete = Get.put(
-      NotesController(),
-    );
+    final controller = Get.find<NotesController>();
 
-    final controller = Get.put(NotesController());
     final note = controller.notes.elementAt(index);
     final createdDateFormat = DateFormat.yMMMMd().format(note.createdDate);
     final createdTimeFormat = DateFormat.jm().format(note.createdDate);
-
+    final updatedDateFormat = DateFormat.yMMMMd().format(
+      note.updatedDate ?? DateTime.now(),
+    );
+    final updatedTimeFormat = DateFormat.jm().format(
+      note.updatedDate ?? DateTime.now(),
+    );
     return InkWell(
       onTap: () {
-        Get.toNamed(RouteNames.noteScreen, arguments: {
-          'isUpdate': true,
-          'note': note,
-        });
+        Get.toNamed(
+          RouteNames.noteScreen,
+          arguments: {
+            'isUpdate': true,
+            'note': note,
+            'index': index,
+          },
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
@@ -57,6 +64,15 @@ class CustomSingleNotes extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              note.updatedDate != null
+                  ? Text(
+                      '$updatedDateFormat - $updatedTimeFormat',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                    )
+                  : const SizedBox(),
               Text(
                 note.description,
                 style: TextStyle(
@@ -79,7 +95,7 @@ class CustomSingleNotes extends StatelessWidget {
           trailing: IconButton(
             onPressed: () {
               Get.snackbar("$index", "Deleted $index note");
-              noteDelete.deleteNote(index);
+              controller.deleteNote(index);
               Get.to(() => const HomeScreen());
             },
             icon: const Icon(Icons.delete),

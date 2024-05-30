@@ -21,7 +21,7 @@ class NoteScreen extends StatelessWidget {
           };
     final bool isUpdate = arg['isUpdate'] ?? false;
     final note = arg['note'] == null ? null : arg['note'] as NotesModel;
-
+    final int? index = arg['index'] == null ? null : arg['index'] as int;
     final titleController =
         TextEditingController(text: isUpdate ? note!.title : null);
     final descriptionController =
@@ -99,13 +99,22 @@ class NoteScreen extends StatelessWidget {
                 "Title or Description is EMPTY",
               );
             } else {
-              notesAdded.addNotes(
-                NotesModel(
-                  title: titleController.text,
-                  description: descriptionController.text,
-                  createdDate: DateTime.now(),
-                ),
-              );
+              isUpdate
+                  ? notesAdded.updateNote(
+                      index!,
+                      NotesModel(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        createdDate: note!.createdDate,
+                      ),
+                    )
+                  : notesAdded.addNotes(
+                      NotesModel(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        createdDate: DateTime.now(),
+                      ),
+                    );
 
               Get.toNamed(
                 RouteNames.home,
