@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/route/route_names.dart';
+// import 'package:getx/route/route_names.dart';
 import 'package:getx/route/route_pages.dart';
 import 'package:getx/utils/colors.dart';
 import 'package:getx/view/onboard/onboard.dart';
