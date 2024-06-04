@@ -2,9 +2,38 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class OnBoardScreen extends StatelessWidget {
+class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
+
+  @override
+  State<OnBoardScreen> createState() => _OnBoardScreenState();
+}
+
+class _OnBoardScreenState extends State<OnBoardScreen> {
+  Future writeData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('is_first_time', false);
+    print("Data stored successfully");
+  }
+
+  readData() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('is_first_time') ?? true;
+    print("is first time : $isFirstTime");
+  }
+
+  deleteData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('is_first_time');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    writeData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +42,10 @@ class OnBoardScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               width: MediaQuery.of(context).size.width * 0.50,
-              decoration: BoxDecoration(
-                // border: Border.all(
-                //   width: 2,
-                //   color: Colors.black.withOpacity(0.1),
-                // ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Lottie.asset("lib/assets/lottie/ham.json"),
+              // child: Lottie.asset("lib/assets/lottie/ham.json"),
             ),
             const SizedBox(
               height: 10,
