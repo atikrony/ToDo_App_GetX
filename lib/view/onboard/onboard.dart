@@ -14,8 +14,7 @@ class OnBoardScreen extends StatefulWidget {
 class _OnBoardScreenState extends State<OnBoardScreen> {
   Future writeData() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('is_first_time', false);
-    print("Data stored successfully");
+    prefs.setString('is_first_time', 'no');
   }
 
   readData() async {
@@ -45,7 +44,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               width: MediaQuery.of(context).size.width * 0.50,
-              // child: Lottie.asset("lib/assets/lottie/ham.json"),
+              child: Lottie.asset("lib/assets/lottie/ham.json"),
             ),
             const SizedBox(
               height: 10,
